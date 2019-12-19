@@ -20,7 +20,7 @@ EOF
 
 resource "aws_lambda_function" "on_connect" {
   filename      = "./on-connect/target/bin/on-connect.zip"
-  function_name = "on-connect"
+  function_name = "onConnect"
   role          = "${aws_iam_role.allow_on_connect.arn}"
   handler       = "main"
 
