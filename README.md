@@ -16,6 +16,7 @@ Usage assumes you already have terraform (v0.12) and awscli (v2.42) setup.
 Execute the following:
 
 ```sh
+cd websocket
 make setup
 make package
 make run
