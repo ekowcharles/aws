@@ -21,7 +21,7 @@ make package
 make run
 ```
 
-To cleanup everything, run:"
+To cleanup everything, run:
 
 ```sh
 make destroy
