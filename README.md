@@ -11,13 +11,18 @@ _https://aws.amazon.com/blogs/compute/announcing-websocket-apis-in-amazon-api-ga
 
 ### Usage
 
-Usage assumes you already have terraform (v0.12) and awscli (v2.42) setup.
+Usage assumes you already have terraform (v0.12) and awscli (v2.42) setup and you are in the _websocket_ folder.
 
 Execute the following:
 
 ```sh
-cd websocket
 make setup
 make package
 make run
+```
+
+To cleanup everything, run:"
+
+```sh
+make destroy
 ```

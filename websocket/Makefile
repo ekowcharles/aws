@@ -15,3 +15,6 @@ package:
 	GOPATH=`pwd`/on-connect GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -ldflags="-d -s -w" -o `pwd`/on-connect/target/bin/main ./on-connect/src/main.go
 	chmod +x on-connect/target/bin/main
 	zip -j on-connect/target/bin/on-connect.zip on-connect/target/bin/main
+
+destroy:
+	terraform destroy
