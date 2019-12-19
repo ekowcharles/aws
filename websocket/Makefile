@@ -6,7 +6,7 @@ setup:
 
 run:
 	terraform plan
-	terraform apply -auto-approve
+	terraform apply
 
 package:
 	rm -rf ./on-connect/target/bin
