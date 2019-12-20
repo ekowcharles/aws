@@ -22,20 +22,7 @@ resource "aws_iam_role_policy" "allow_function_to_dynamo_db" {
   name = "allow-${var.name}-to-dynamo-db"
   role = "${aws_iam_role.allow_function.id}"
 
-  policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": [
-        "dynamodb:BatchWriteItem"
-      ],
-      "Effect": "Allow",
-      "Resource": "arn:aws:dynamodb:us-east-1:*:table/flyingchat"
-    }
-  ]
-}
-EOF
+  policy = templatefile("${path.module}/templates/function_to_dynamo_db_policy.json.tpl", { dynamodb_arn = var.dynamodb_arn })
 }
 
 resource "aws_lambda_function" "function" {
