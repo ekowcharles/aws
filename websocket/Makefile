@@ -8,13 +8,17 @@ run:
 	terraform plan
 	terraform apply
 
+package_function:
+	rm -rf ./${FUNCTION}/target/bin
+	mkdir -p ./${FUNCTION}/target/bin
+	GOPATH=`pwd`/${FUNCTION} go get -u github.com/aws/aws-lambda-go/cmd/build-lambda-zip
+	GOPATH=`pwd`/${FUNCTION} GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -ldflags="-d -s -w" -o `pwd`/${FUNCTION}/target/bin/main ./${FUNCTION}/src/main.go
+	chmod +x ${FUNCTION}/target/bin/main
+	zip -j ${FUNCTION}/target/bin/${FUNCTION}.zip ${FUNCTION}/target/bin/main
+
 package:
-	rm -rf ./on-connect/target/bin
-	mkdir -p ./on-connect/target/bin
-	GOPATH=`pwd`/on-connect go get -u github.com/aws/aws-lambda-go/cmd/build-lambda-zip
-	GOPATH=`pwd`/on-connect GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -ldflags="-d -s -w" -o `pwd`/on-connect/target/bin/main ./on-connect/src/main.go
-	chmod +x on-connect/target/bin/main
-	zip -j on-connect/target/bin/on-connect.zip on-connect/target/bin/main
+	$(MAKE) FUNCTION=on-connect package_function
+	$(MAKE) FUNCTION=on-send package_function
 
 destroy:
 	terraform destroy
