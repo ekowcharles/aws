@@ -18,11 +18,18 @@ resource "aws_iam_role" "allow_function" {
 EOF
 }
 
+data "aws_iam_policy_document" "allow_function_to_dynamo_db" {
+  statement {
+    actions   = ["dynamodb:BatchWriteItem"]
+    resources = [var.dynamodb_arn]
+  }
+}
+
 resource "aws_iam_role_policy" "allow_function_to_dynamo_db" {
   name = "allow-${var.name}-to-dynamo-db"
   role = "${aws_iam_role.allow_function.id}"
 
-  policy = templatefile("${path.module}/templates/function_to_dynamo_db_policy.json.tpl", { dynamodb_arn = var.dynamodb_arn })
+  policy = data.aws_iam_policy_document.allow_function_to_dynamo_db.json
 }
 
 resource "aws_lambda_function" "function" {
