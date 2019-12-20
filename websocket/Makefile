@@ -1,6 +1,6 @@
 .PHONY: bucket package
 
-setup:
+init:
 	aws s3api create-bucket --bucket flyingstates --acl private --region us-east-1
 	terraform init
 
