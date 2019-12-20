@@ -1,5 +1,5 @@
 resource "aws_iam_role" "allow_function" {
-  name = "allow-${var.path}"
+  name = "allow-${var.name}"
 
   assume_role_policy = <<EOF
 {
@@ -19,7 +19,7 @@ EOF
 }
 
 resource "aws_iam_role_policy" "allow_function_to_dynamo_db" {
-  name = "allow-${var.path}-to-dynamo-db"
+  name = "allow-${var.name}-to-dynamo-db"
   role = "${aws_iam_role.allow_function.id}"
 
   policy = <<EOF
@@ -39,12 +39,12 @@ EOF
 }
 
 resource "aws_lambda_function" "function" {
-  filename      = "./${var.path}/target/bin/${var.path}.zip"
+  filename      = "./${var.name}/target/bin/${var.name}.zip"
   function_name = var.name
   role          = "${aws_iam_role.allow_function.arn}"
   handler       = "main"
 
-  source_code_hash = "${filebase64sha256("./${var.path}/target/bin/${var.path}.zip")}"
+  source_code_hash = "${filebase64sha256("./${var.name}/target/bin/${var.name}.zip")}"
 
   runtime = "go1.x"
 }

@@ -1,13 +1,11 @@
-module "onConnect" {
+module "on-connect" {
   source = "./modules/functions"
 
-  path = "on-connect"
-  name = "onConnect"
+  name = "on-connect"
 }
 
-module "onSend" {
+module "on-send" {
   source = "./modules/functions"
 
-  path = "on-send"
-  name = "onSend"
+  name = "on-send"
 }
