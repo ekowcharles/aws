@@ -18,10 +18,10 @@ module "on-disconnect" {
   dynamo_db_permissions = ["dynamodb:DeleteItem"]
 }
 
-module "on-send" {
+module "send-message" {
   source = "./modules/functions"
 
-  name = "on-send"
+  name = "send-message"
   dynamodb_arn = local.dynamo_db_arn
   dynamo_db_permissions = ["dynamodb:Scan"]
 }

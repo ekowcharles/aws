@@ -21,6 +21,7 @@ package_function:
 package:
 	$(MAKE) FUNCTION=on-connect package_function
 	$(MAKE) FUNCTION=on-disconnect package_function
+	$(MAKE) FUNCTION=send-message package_function
 
 destroy:
 	terraform destroy

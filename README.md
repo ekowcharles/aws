@@ -13,6 +13,11 @@ It is a golang rendition of the [Node.js example](https://github.com/aws-samples
 
 All parts but the `api` component is has not been completed yet because it is [still being added to terraform](https://github.com/terraform-providers/terraform-provider-aws/issues/7004).
 
+### TODO
+
+1. Create API Gateway REST API v2
+1. Broadcast message wend _send-message_ function is invoked.
+
 ### Usage
 
 Usage assumes you already have terraform (v0.12) and awscli (v2.42) setup and you are in the _websocket_ folder.
@@ -20,7 +25,7 @@ Usage assumes you already have terraform (v0.12) and awscli (v2.42) setup and yo
 Execute the following:
 
 ```sh
-make setup
+make init
 make package
 make run
 ```
