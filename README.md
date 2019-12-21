@@ -30,6 +30,22 @@ make package
 make run
 ```
 
+To test _on-connect_, provide the following as params to the function in the AWS UI and inspect the Dynamo DB to confirm a record is inserted:
+
+```json
+{
+  "connection_id": "fd991532-23b2-11ea-978f-2e728ce88125"
+}
+```
+
+To test _on-disconnect_, provide the following as params to the function in the AWS UI and inspect the Dynamo DB to confirm the initially created record is removed:
+
+```json
+{
+  "connection_id": "fd991532-23b2-11ea-978f-2e728ce88125"
+}
+```
+
 To cleanup everything, run:
 
 ```sh
