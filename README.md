@@ -11,6 +11,8 @@ _https://aws.amazon.com/blogs/compute/announcing-websocket-apis-in-amazon-api-ga
 
 It is a golang rendition of the [Node.js example](https://github.com/aws-samples/simple-websockets-chat-app) alongside terraform configurations.
 
+All parts but the `api` component is has not been completed yet because it is [still being added to terraform](https://github.com/terraform-providers/terraform-provider-aws/issues/7004).
+
 ### Usage
 
 Usage assumes you already have terraform (v0.12) and awscli (v2.42) setup and you are in the _websocket_ folder.
